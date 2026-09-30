@@ -1,0 +1,19 @@
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="acquisition-pipeline" name="Acquisition pipeline">
+    <mxGraphModel dx="1600" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Acquisition v2: separate control from timed sampling" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=34;fontStyle=1;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="65" y="30" width="1200" height="60" as="geometry"/></mxCell>
+        <mxCell id="main" value="Main&#xa;manager queue&#xa;commands + data batches" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#457B9D;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="65" y="150" width="300" height="175" as="geometry"/></mxCell>
+        <mxCell id="handler" value="Acquisition handler&#xa;Start / Stop / shutdown&#xa;waits for helper completion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#457B9D;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="475" y="150" width="340" height="175" as="geometry"/></mxCell>
+        <mxCell id="control" value="Control queue&#xa;Start / Stop&#xa;checked without blocking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E9C46A;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="925" y="150" width="260" height="175" as="geometry"/></mxCell>
+        <mxCell id="loop" value="Timed Loop&#xa;sample every 50 ms&#xa;buffer 10 samples" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A9D8F;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="1290" y="150" width="250" height="175" as="geometry"/></mxCell>
+        <mxCell id="m-h" value="Start / Stop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#457B9D;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;fontColor=#354B55;" edge="1" parent="1" source="main" target="handler"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="h-q" value="control" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#457B9D;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;fontColor=#354B55;" edge="1" parent="1" source="handler" target="control"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="q-t" value="commands" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#457B9D;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;fontColor=#354B55;" edge="1" parent="1" source="control" target="loop"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="batch" value="10 samples = 1 batch / ~500 ms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2A9D8F;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;fontColor=#2A9D8F;" edge="1" parent="1" source="loop" target="main"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1415" y="385"/><mxPoint x="215" y="385"/></Array></mxGeometry></mxCell>
+        <mxCell id="shutdown" value="wait for helper, then release queues" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=19;fontStyle=1;fontColor=#E76F51;" vertex="1" parent="1"><mxGeometry x="520" y="410" width="600" height="40" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

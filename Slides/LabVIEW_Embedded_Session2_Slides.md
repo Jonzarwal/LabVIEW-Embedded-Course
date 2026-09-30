@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 
@@ -236,8 +241,8 @@ Because **file I/O is slow and non-deterministic** — it should never happen in
 - `Main.vi`: obtain Logbook's queue, run its handler in parallel
 - Extend the shutdown broadcast to reach it too
 - `"Cook a meal"` gets a ~15% simulated failure (a custom LabVIEW error)
-- On failure: send `{"Log", <error as Variant>}` directly to Logbook
-- On every successful cook: log it too — Logbook becomes our full record
+- On failure: format the error into `LogEntry.ctl` (`kind: "error"`, useful details in `text`) and send `{"Log", <LogEntry>}`
+- On every successful cook: send a typed `LogEntry` too — the log records events, not just failures
 
 ✅ Validate, commit, merge into `main`, push
 

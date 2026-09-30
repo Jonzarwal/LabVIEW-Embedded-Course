@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="430" viewBox="0 0 1600 430" role="img" aria-labelledby="title desc">
+  <title id="title">What makes a real-time deadline predictable</title>
+  <desc id="desc">A real-time target, bounded work and validated timing margin combine to meet deadlines. Windows offers best-effort scheduling; FPGA timing is deterministic when the design meets its constraints.</desc>
+  <rect width="1600" height="430" rx="22" fill="#F3F7F6"/>
+  <text x="70" y="72" fill="#1D3557" font-family="Arial, sans-serif" font-size="34" font-weight="700">A deadline is an end-to-end property</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="70" y="125" width="420" height="170" rx="16" fill="#FFFFFF" stroke="#2A9D8F" stroke-width="4"/>
+    <circle cx="125" cy="180" r="25" fill="#2A9D8F"/>
+    <path d="M125 164v18l13 8" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    <text x="170" y="178" fill="#1D3557" font-size="27" font-weight="700">RT target</text>
+    <text x="105" y="235" fill="#354B55" font-size="22">Prioritized scheduling</text>
+    <text x="105" y="269" fill="#354B55" font-size="22">reduces interference</text>
+
+    <text x="510" y="222" fill="#E76F51" font-size="48" font-weight="700">+</text>
+
+    <rect x="575" y="125" width="420" height="170" rx="16" fill="#FFFFFF" stroke="#E9C46A" stroke-width="4"/>
+    <path d="M625 197h35l20-34 25 70 20-36h38" fill="none" stroke="#E9C46A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="785" y="178" fill="#1D3557" font-size="27" font-weight="700">Bounded work</text>
+    <text x="610" y="235" fill="#354B55" font-size="22">Known execution time</text>
+    <text x="610" y="269" fill="#354B55" font-size="22">and controlled I/O</text>
+
+    <text x="1015" y="222" fill="#E76F51" font-size="48" font-weight="700">+</text>
+
+    <rect x="1080" y="125" width="450" height="170" rx="16" fill="#FFFFFF" stroke="#457B9D" stroke-width="4"/>
+    <path d="M1130 198l18 18 37-42" fill="none" stroke="#457B9D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1210" y="178" fill="#1D3557" font-size="27" font-weight="700">Validated margin</text>
+    <text x="1115" y="235" fill="#354B55" font-size="22">Measure worst-case load</text>
+    <text x="1115" y="269" fill="#354B55" font-size="22">against the deadline</text>
+  </g>
+  <rect x="70" y="330" width="1460" height="56" rx="12" fill="#1D3557"/>
+  <text x="800" y="367" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">RT improves control; FPGA can be cycle-deterministic; neither makes an unverified design correct.</text>
+</svg>

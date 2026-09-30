@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 
@@ -143,6 +148,8 @@ The MyRIO has a **3-axis accelerometer built in** — no wiring, no external boa
 - At rest, it reads gravity — exactly the vector our Session 3 tilt discussion was built on
 - Some sensor noise, unlike our clean sine + noise simulation — expect it to look messier
 
+![h:260](assets/accelerometer_axes.svg)
+
 ---
 
 ## Reading it in LabVIEW
@@ -182,7 +189,7 @@ Inside `Acquisition.lvlib`'s **hidden helper loop** — and *only* there:
 1. Wrap the sample-generation code in a **Conditional Disable Structure**
 2. **Windows case**: keep the simulated sine + noise
 3. **Real-Time case**: the onboard accelerometer read, packed into `AccelSample.ctl`
-4. Everything else — command loop, batching, Local Variables, contract — untouched. The same file now works, unchanged, in both projects.
+4. Everything else — command loop, batching, control queue, contract — untouched. The same file now works, unchanged, in both projects.
 
 If this is the only thing you had to change, the contract held.
 

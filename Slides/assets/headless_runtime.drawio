@@ -1,0 +1,20 @@
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="headless-runtime" name="Headless runtime">
+    <mxGraphModel dx="1600" dy="440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="440" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Power on - application running, with no host PC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=34;fontStyle=1;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="70" y="25" width="1200" height="60" as="geometry"/></mxCell>
+        <mxCell id="power" value="Power&#xa;cycle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E76F51;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="70" y="145" width="250" height="165" as="geometry"/></mxCell>
+        <mxCell id="myrio" value="MyRIO boots&#xa;startup .rtexe&#xa;acquire + process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#457B9D;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="430" y="145" width="350" height="165" as="geometry"/></mxCell>
+        <mxCell id="logbook" value="Logbook&#xa;selected events on target" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E9C46A;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="930" y="95" width="280" height="125" as="geometry"/></mxCell>
+        <mxCell id="broadcast" value="UDP broadcast&#xa;live value + alarm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A9D8F;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="930" y="245" width="280" height="125" as="geometry"/></mxCell>
+        <mxCell id="receiver" value="Receiver&#xa;any host" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A9D8F;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="1330" y="245" width="220" height="125" as="geometry"/></mxCell>
+        <mxCell id="p-m" value="power" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#457B9D;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="power" target="myrio"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m-l" value="append events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E9C46A;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="myrio" target="logbook"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m-b" value="live data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2A9D8F;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="myrio" target="broadcast"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="b-r" value="UDP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2A9D8F;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="broadcast" target="receiver"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="note" value="The receiver is optional; local event logging remains on the target." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="260" y="390" width="1080" height="35" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

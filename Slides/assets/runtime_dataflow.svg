@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-labelledby="title desc">
+  <title id="title">Runtime data, broadcast and event logging paths</title>
+  <desc id="desc">Acquisition sends batches to Main for processing. Main broadcasts the live value and alarm over UDP, while alarm transitions and errors are appended to the Logbook file on the MyRIO.</desc>
+  <rect width="1600" height="500" rx="22" fill="#F3F7F6"/>
+  <text x="70" y="65" fill="#1D3557" font-family="Arial, sans-serif" font-size="34" font-weight="700">One measurement stream, two useful destinations</text>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <rect x="65" y="130" width="290" height="150" rx="16" fill="#FFFFFF" stroke="#457B9D" stroke-width="4"/>
+    <text x="210" y="183" fill="#1D3557" font-size="27" font-weight="700">Acquisition</text>
+    <text x="210" y="228" fill="#354B55" font-size="21">10-sample batch</text>
+
+    <rect x="475" y="130" width="330" height="150" rx="16" fill="#FFFFFF" stroke="#457B9D" stroke-width="4"/>
+    <text x="640" y="183" fill="#1D3557" font-size="27" font-weight="700">Main</text>
+    <text x="640" y="228" fill="#354B55" font-size="21">process value + alarm</text>
+
+    <rect x="920" y="130" width="270" height="150" rx="16" fill="#FFFFFF" stroke="#2A9D8F" stroke-width="4"/>
+    <text x="1055" y="183" fill="#1D3557" font-size="27" font-weight="700">Broadcast</text>
+    <text x="1055" y="228" fill="#354B55" font-size="21">CSV over UDP</text>
+
+    <rect x="1300" y="130" width="230" height="150" rx="16" fill="#FFFFFF" stroke="#2A9D8F" stroke-width="4"/>
+    <text x="1415" y="183" fill="#1D3557" font-size="27" font-weight="700">Receiver</text>
+    <text x="1415" y="228" fill="#354B55" font-size="21">live display</text>
+
+    <rect x="475" y="350" width="330" height="110" rx="16" fill="#FFFFFF" stroke="#E9C46A" stroke-width="4"/>
+    <text x="640" y="397" fill="#1D3557" font-size="25" font-weight="700">Logbook</text>
+    <text x="640" y="433" fill="#354B55" font-size="19">alarm transitions + errors</text>
+
+    <rect x="920" y="350" width="270" height="110" rx="16" fill="#FFFFFF" stroke="#E9C46A" stroke-width="4"/>
+    <text x="1055" y="397" fill="#1D3557" font-size="25" font-weight="700">Target file</text>
+    <text x="1055" y="433" fill="#354B55" font-size="19">persistent event record</text>
+  </g>
+  <g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M355 205h100m-18-18 18 18-18 18" stroke="#457B9D"/>
+    <path d="M805 205h100m-18-18 18 18-18 18" stroke="#2A9D8F"/>
+    <path d="M1190 205h90m-18-18 18 18-18 18" stroke="#2A9D8F"/>
+    <path d="M640 280v55m-18-18 18 18 18-18" stroke="#E9C46A"/>
+    <path d="M805 405h100m-18-18 18 18-18 18" stroke="#E9C46A"/>
+  </g>
+  <text x="800" y="490" fill="#1D3557" font-family="Arial, sans-serif" font-size="19" text-anchor="middle">Live samples stay on the network path; only events are written to disk.</text>
+</svg>

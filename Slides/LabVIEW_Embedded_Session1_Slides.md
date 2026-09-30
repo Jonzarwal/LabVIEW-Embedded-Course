@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 

@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="runtime-dataflow" name="Runtime dataflow">
+    <mxGraphModel dx="1600" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="title" value="One measurement stream, two useful destinations" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=34;fontStyle=1;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="65" y="25" width="1150" height="60" as="geometry"/></mxCell>
+        <mxCell id="acquisition" value="Acquisition&#xa;10-sample batch" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#457B9D;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="65" y="130" width="290" height="150" as="geometry"/></mxCell>
+        <mxCell id="main" value="Main&#xa;process value + alarm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#457B9D;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="475" y="130" width="330" height="150" as="geometry"/></mxCell>
+        <mxCell id="broadcast" value="Broadcast&#xa;CSV over UDP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A9D8F;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="920" y="130" width="270" height="150" as="geometry"/></mxCell>
+        <mxCell id="receiver" value="Receiver&#xa;live display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2A9D8F;strokeWidth=3;fontSize=24;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="1300" y="130" width="230" height="150" as="geometry"/></mxCell>
+        <mxCell id="logbook" value="Logbook&#xa;alarm transitions + errors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E9C46A;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="475" y="350" width="330" height="110" as="geometry"/></mxCell>
+        <mxCell id="file" value="Target file&#xa;persistent event record" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E9C46A;strokeWidth=3;fontSize=22;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="920" y="350" width="270" height="110" as="geometry"/></mxCell>
+        <mxCell id="a-m" value="data batch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#457B9D;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="acquisition" target="main"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m-b" value="value + alarm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2A9D8F;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="main" target="broadcast"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="b-r" value="UDP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2A9D8F;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="broadcast" target="receiver"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m-l" value="transitions / errors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E9C46A;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="main" target="logbook"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="l-f" value="append" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E9C46A;strokeWidth=3;endArrow=block;endFill=1;fontSize=17;" edge="1" parent="1" source="logbook" target="file"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="note" value="Live samples stay on the network path; only events are written to disk." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=19;fontStyle=1;fontColor=#1D3557;" vertex="1" parent="1"><mxGeometry x="260" y="465" width="1080" height="30" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

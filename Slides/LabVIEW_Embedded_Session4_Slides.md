@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 
@@ -46,9 +51,11 @@ img {
 
 ## 🔁 Recap
 
-`ProcessDataBatch.vi` now turns every incoming batch into exactly two things: a **scalar value** and an **alarm** boolean — same shape for both teams, whatever the physics underneath.
+`ProcessDataBatch.vi` now turns every incoming batch into a **scalar value** and an **alarm** boolean — same shape for both teams, whatever the physics underneath. Main sends the live result to Broadcast and sends only alarm transitions and errors to Logbook.
 
 Today, that result becomes visible **somewhere else entirely** — without Main ever knowing or caring who's watching.
+
+![h:230](assets/runtime_dataflow.svg)
 
 ---
 
@@ -116,6 +123,7 @@ Follow **the recipe from Session 2** — folder, `.lvlib`, copy the template `Ha
 
 - Obtain Broadcast's queue, launch it in parallel
 - After `ProcessDataBatch.vi` returns, build a `BroadcastPayload` (timestamp, value, alarm) and send `{"Publish", <payload>}`
+- Log only alarm transitions and processing errors through Logbook; keep the live sample stream out of the file
 - Extend the shutdown broadcast to Broadcast
 
 ✅ **Commit**: `"Wire Broadcast into Main"` — merge locally, push

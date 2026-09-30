@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 
@@ -82,10 +87,13 @@ A loop using `Wait (ms)` on a busy machine will drift.
 
 ## ⏱️ Timed Loop — what it buys you, and what it doesn't
 
-| Target | Guarantee |
+| Target | What it provides |
 |---|---|
-| Real RT / FPGA | **Hard guarantee** — the hardware is built for it |
-| Plain Windows | **Best-effort improvement** — still not a guarantee |
+| Real-Time target | Prioritized scheduling and more predictable timing; deadlines still depend on bounded code and load |
+| FPGA | Cycle-deterministic execution when the design meets its timing and resource constraints |
+| Plain Windows | Best-effort scheduling; no hard deadline guarantee |
+
+![h:210](assets/rt_timing.svg)
 
 ---
 
@@ -225,7 +233,11 @@ Follow **the recipe from Session 2** — folder, `.lvlib`, copy the template `Ha
 
 - New contract: `{"Data batch", <array of 10 AccelSample.ctl>}` every ~500 ms
 - **Hidden helper Timed Loop** at 50 ms does the real sampling, batches 10
-- Command loop back to plain `−1` — the two loops talk via **Local Variables**: `Acquiring`, `Keep Running`
+- A dedicated **control queue** carries Start/Stop/Shutdown from the Handler to the helper; the helper checks it without blocking each tick
+- The helper owns its acquisition state and sends each batch directly to Main's queue; no shared Local Variables
+- On shutdown, the Handler waits for the helper to finish before releasing queues
+
+![h:220](assets/acquisition_pipeline.svg)
 
 ✅ **Commit**: `"Acquisition v2 — batched via hidden helper Timed Loop"`
 
@@ -237,6 +249,7 @@ Follow **the recipe from Session 2** — folder, `.lvlib`, copy the template `Ha
 
 - Remove Get Order's wiring, launch Acquisition instead
 - `"Data batch"` → `ProcessDataBatch.vi` *(same sub-VI pattern as `HandleCookRequest.vi`)* — see the next two slides for what each team's version actually does
+- When the alarm changes between `OK` and `ALARM`, send one typed `LogEntry` to Logbook; do not log every batch
 - Extend shutdown to Acquisition
 
 ✅ **Commit**: `"Wire Acquisition into Main..."` — merge locally, push

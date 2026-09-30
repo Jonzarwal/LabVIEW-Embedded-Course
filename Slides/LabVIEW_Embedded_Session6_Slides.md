@@ -15,9 +15,14 @@ header {
 footer {
   color: #457B9D;
 }
-img {
+img:not(.emoji) {
   display: block;
   margin: 0 auto;
+}
+.emoji {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -0.15em;
 }
 </style>
 
@@ -136,15 +141,17 @@ Walk around, watch everyone else's boot up too — this **is** the demo.
 
 ## ✈️ Why this matters now
 
-The app runs headless now — nobody has to be watching the UDP broadcast for anything to be captured. The Logbook is no longer a nice-to-have, it's your **black box flight recorder**: you don't watch it live, but when you want to know what happened, it's there.
+The app runs headless now — nobody has to be watching the UDP broadcast for selected events to be recorded. The Logbook is your **flight recorder**: it keeps startup, alarm transitions, and errors, not every sensor sample.
+
+![h:230](assets/headless_runtime.svg)
 
 ---
 
-## 🛠️ One line first: log the boot itself
+## 🛠️ Log startup and important events
 
-In `Main.vi`, right at startup — before anything else runs — send `{"Log", "Application started"}` to Logbook.
+After starting Logbook, before starting Acquisition, send `{"Log", <LogEntry>}` with the current timestamp, `kind: "startup"`, and `text: "Application started"`. Use the same typed contract for alarm transitions and processing errors; do not log every batch.
 
-Every single boot now writes itself into its own record.
+Configure Logbook to append to a writable location on the MyRIO. Record that exact target path in the project README so it can be found after deployment.
 
 Rebuild the `.rtexe` (Work 1's steps), redeploy, reboot once more.
 
@@ -152,10 +159,10 @@ Rebuild the `.rtexe` (Work 1's steps), redeploy, reboot once more.
 
 ## 🛠️ Go find it — no supervision screen required
 
-1. Let the MyRIO run a minute, tilt it a couple of times to generate some events
+1. Let the MyRIO run a minute, tilt it enough to trigger an alarm transition
 2. Open **MobaXterm** (or any SSH/SFTP client), connect to the MyRIO's IP
 3. Navigate to the log file's location on the target's filesystem, open `logbook.txt`
-4. Confirm: the startup entry is there, plus everything since — a full record, entirely independent of whether anyone was watching the live broadcast
+4. Confirm: the startup entry and alarm transition are present; the target log remains available even when no receiver is connected
 
 ✅ **Commit**: `"Log application startup"`, merge locally, push
 
